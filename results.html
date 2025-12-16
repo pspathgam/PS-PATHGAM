@@ -27,12 +27,13 @@ body{
   top:0;
   left:0;
 
-  /* FIX: rotate + translate instead of margin-left */
-  transform:rotate(90deg) translateY(-210mm);
+  /* FINAL FIX: center rotated content to fill full A4 */
+  transform:rotate(90deg) translate(0,-210mm);
   transform-origin:top left;
 
-  padding:8mm;
+  padding:6mm; /* reduced padding to avoid bottom blank area */
   box-sizing:border-box;
+}
 }
 
 /* ===== HEADER ===== */
@@ -219,12 +220,7 @@ th{
 </div>
 
   </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script>
 function downloadPDF(){
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF("p","mm","a4");
@@ -238,7 +234,11 @@ function downloadPDF(){
   });
 }
 </script>
-
 </body>
 </html>
+
+
+
+
+
 
