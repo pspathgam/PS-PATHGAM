@@ -1,108 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primary School Report Card</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results | GPS Pethgam Wagoora</title>
 
-        .report-card {
-            width: 900px;
-            margin: 0 auto;
-            border: 5px solid #004d40; /* Dark Teal/Green Border */
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            font-size: 10px; /* Reduced font size to fit more content */
-        }
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-        /* Header Section */
-        .header {
-            background-color: #558b2f; /* Government Green */
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            border-bottom: 2px solid #004d40;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  padding:10px;
+}
+.search-box{
+  max-width:400px;
+  margin:10px auto;
+  background:#fff;
+  padding:15px;
+  border-radius:8px;
+  text-align:center;
+}
+.search-box input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+}
+.search-box button{
+  padding:10px 20px;
+  background:#2e7d32;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+}
 
-        .header img {
-            height: 50px; /* Adjust size of logo */
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+.report-card{
+  display:none;
+  max-width:900px;
+  margin:20px auto;
+  background:#fff;
+  border:4px solid #2e7d32;
+  padding:10px;
+  font-size:12px;
+}
 
-        .header h1 {
-            font-size: 16px;
-            margin: 0;
-            font-weight: bold;
-            line-height: 1.2;
-        }
+.header{
+  text-align:center;
+  background:#558b2f;
+  color:#fff;
+  padding:10px;
+}
+.header h2{margin:0}
 
-        .header p {
-            font-size: 12px;
-            margin: 0;
-        }
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th,td{
+  border:1px solid #999;
+  padding:5px;
+  text-align:center;
+}
+th{background:#c8e6c9}
 
-        /* Student Info Section */
-        .student-info {
-            display: flex;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #004d40;
-        }
+.download-btn{
+  margin-top:15px;
+  padding:10px;
+  background:#1565c0;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  width:100%;
+}
+.back{
+  display:block;
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
 
-        .info-row {
-            display: flex;
-            width: 100%;
-        }
+<body>
 
-        .info-item {
-            padding: 5px 10px;
-            border-right: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            flex-grow: 1;
-            white-space: nowrap;
-        }
+<!-- SEARCH -->
+<div class="search-box">
+  <h3>🎓 Online Result Checker</h3>
+  <input type="text" id="roll" placeholder="Enter Roll No (406)">
+  <button onclick="checkResult()">Check Result</button>
+</div>
 
-        .info-item:last-child {
-            border-right: none;
-        }
+<!-- REPORT CARD -->
+<div class="report-card" id="card">
 
-        .info-label {
-            font-weight: bold;
-            background-color: #dcedc8; /* Light Green background for labels */
-            width: 100px; /* Fixed width for labels */
-            flex-shrink: 0;
-        }
+  <div class="header">
+    <h2>GOVERNMENT PRIMARY SCHOOL</h2>
+    <div>PETHGAM WAGOORA – 193109</div>
+  </div>
 
-        .info-value {
-            flex-grow: 1;
-        }
+  <p><b>Student Name:</b> MAHIRA SALAM</p>
+  <p><b>Father’s Name:</b> ABDUL SALAM BHAT</p>
+  <p><b>Mother’s Name:</b> GULSHANA BEGUM</p>
+  <p><b>Class:</b> 4th &nbsp; <b>Roll No:</b> 406</p>
+  <p><b>Session:</b> Nov–Dec 2024</p>
 
-        /* Student Info - Specific Styling */
-        .student-info .info-item:nth-child(4n-3),
-        .student-info .info-item:nth-child(4n-2) {
-            width: 50%; /* Make first two items in row span half */
-        }
+  <table>
+    <tr>
+      <th>Subject</th><th>Marks</th><th>Grade</th>
+    </tr>
+    <tr><td>English</td><td>57</td><td>B</td></tr>
+    <tr><td>Math</td><td>43</td><td>C</td></tr>
+    <tr><td>EVS</td><td>57</td><td>B</td></tr>
+    <tr><td>Urdu</td><td>67</td><td>B</td></tr>
+    <tr><td>Kashmiri</td><td>68</td><td>B</td></tr>
+    <tr><th>Total</th><th>292 / 500</th><th>B</th></tr>
+  </table>
 
-        .info-label.red-bg {
-            background-color: #ffcdd2; /* Light Red/Pink for Academic Session */
-        }
+  <p><b>Percentage:</b> 58%</p>
+  <p><b>Result:</b> PASS (PROMOTED)</p>
+  <p><b>Remarks:</b> Needs improvement in Mathematics.</p>
 
-        .info-item.red-text {
-            color: #d32f2f; /* Red text for #REF! */
-            font-weight: bold;
+  <button class="download-btn" onclick="downloadPDF()">⬇ Download PDF Marksheet</button>
+</div>
+
+<a href="index.html" class="back">⬅ Back to Home</a>
+
+<script>
+function checkResult(){
+  const roll=document.getElementById("roll").value;
+  if(roll==="406"){
+    document.getElementById("card").style.display="block";
+  }else{
+    alert("Result not found");
+  }
+}
+
+function downloadPDF(){
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF();
+
+  pdf.text("GOVERNMENT PRIMARY SCHOOL",20,20);
+  pdf.text("PETHGAM WAGOORA – 193109",20,28);
+
+  pdf.text("Student: MAHIRA SALAM",20,40);
+  pdf.text("Class: 4th  Roll: 406",20,48);
+  pdf.text("English: 57",20,60);
+  pdf.text("Math: 43",20,68);
+  pdf.text("EVS: 57",20,76);
+  pdf.text("Urdu: 67",20,84);
+  pdf.text("Kashmiri: 68",20,92);
+
+  pdf.text("Total: 292 / 500",20,110);
+  pdf.text("Result: PASS",20,118);
+
+  pdf.save("Mahira_Salam_Marksheet.pdf");
+}
+</script>
+
+</body>
+</html>            font-weight: bold;
         }
 
         /* Assessment Table */
