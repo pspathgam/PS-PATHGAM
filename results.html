@@ -39,10 +39,19 @@ body{
 /* ===== HEADER ===== */
 .header{
   display:grid;
-  grid-template-columns:35mm auto 35mm; /* logo | title | photo */
+  grid-template-columns:40mm auto 40mm; /* LEFT logo | CENTER title | RIGHT photo */
   align-items:center;
+  justify-items:center;
   border-bottom:2px solid #004d40;
-  padding-bottom:6mm;
+  padding-bottom:8mm;
+}
+
+.logo{
+  justify-self:start; /* force left */
+}
+
+.photo{
+  justify-self:end; /* force right */
 }
 
 .logo,.photo{
@@ -66,12 +75,14 @@ body{
 
 .title h2{
   margin:0;
-  font-size:32px; /* DOUBLED title size */
-  letter-spacing:0.5px;
+  font-size:48px; /* FURTHER DOUBLED */
+  font-weight:700;
+  letter-spacing:1px;
 }
 
 .title div{
-  font-size:14px; /* scaled with title */
+  font-size:28px; /* 4x subtitle size */
+  line-height:1.3;
 }
 
 /* ===== STUDENT INFO ===== */
@@ -103,6 +114,153 @@ th,td{
   text-align:center;
   word-wrap:break-word;
   line-height:1.6; /* increases row height */
+}
+
+th{
+  background:#c8e6c9;
+}
+
+.grand{
+  background:#81c784;
+  font-weight:bold;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  margin-top:5mm;
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+}
+
+.signature{
+  width:30%;
+  text-align:center;
+  border-top:1px solid #000;
+  padding-top:2mm;
+}
+</style></head><body><button onclick="downloadPDF()" style="margin:10px;">Download PDF</button>
+
+<div class="page">
+  <div class="rotated-sheet"><!-- HEADER -->
+<div class="header">
+  <div class="logo">LOGO</div>
+
+  <div class="title">
+    <h2>GOVERNMENT PRIMARY SCHOOL</h2>
+    <div>PETHGAM WAGOORA – 193109</div>
+    <div><b>Academic Session:</b> Nov–Dec 2024</div>
+  </div>
+
+  <div class="photo">PHOTO</div>
+</div>
+
+<!-- STUDENT INFO -->
+<div class="info">
+  <div><b>Name:</b> MAHIRA SALAM</div>
+  <div><b>Roll No:</b> 406</div>
+  <div><b>Class:</b> 4th</div>
+
+  <div><b>Father:</b> ABDUL SALAM BHAT</div>
+  <div><b>Adm No:</b> 124</div>
+  <div><b>DOB:</b> 15-05-2017</div>
+
+  <div><b>Mother:</b> GULSHANA BEGUM</div>
+  <div><b>PEN:</b> 22125154160</div>
+  <div><b>Apaar ID:</b> N/A</div>
+</div>
+
+<!-- MARKS TABLE -->
+<div class="table-wrap">
+<table>
+  <tr>
+    <th rowspan="2">Subject</th>
+    <th colspan="6">Formative Assessment (5)</th>
+    <th rowspan="2">FA Total</th>
+    <th rowspan="2">CCA (20)</th>
+    <th rowspan="2">SA (50)</th>
+    <th rowspan="2">Total (100)</th>
+    <th rowspan="2">Grade</th>
+  </tr>
+  <tr>
+    <th>FA1</th><th>FA2</th><th>FA3</th>
+    <th>FA4</th><th>FA5</th><th>FA6</th>
+  </tr>
+
+  <tr>
+    <td>English</td>
+    <td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
+    <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td>
+  </tr>
+
+  <tr>
+    <td>Math</td>
+    <td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td>
+    <td>13</td><td>9</td><td>21</td><td>43</td><td>C</td>
+  </tr>
+
+  <tr>
+    <td>EVS</td>
+    <td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
+    <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td>
+  </tr>
+
+  <tr>
+    <td>Urdu</td>
+    <td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td>
+    <td>20</td><td>14</td><td>33</td><td>67</td><td>B</td>
+  </tr>
+
+  <tr>
+    <td>Kashmiri</td>
+    <td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td>
+    <td>21</td><td>14</td><td>33</td><td>68</td><td>B</td>
+  </tr>
+
+  <tr class="grand">
+    <td>Grand Total</td>
+    <td colspan="6">—</td>
+    <td>88</td><td>61</td><td>143</td><td>292</td><td>B</td>
+  </tr>
+</table>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="signature">Class Teacher</div>
+  <div class="signature">Exam I/C</div>
+  <div class="signature">Headmaster</div>
+</div>
+
+  </div>
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script>
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p","mm","a4");
+
+  html2canvas(document.querySelector(".page"),{
+    scale:2,
+    useCORS:true
+  }).then(canvas=>{
+    pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
+    pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
+  });
+}
+</script></body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+line-height:1.6; /* increases row height */
 }
 
 th{
