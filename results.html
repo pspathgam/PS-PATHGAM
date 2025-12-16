@@ -295,62 +295,10 @@ function downloadPDF(){
     pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
   });
 }
-</script></body>
+</script>
+</body>
 </html> 
 
 
 
 
-
-
-
-
-
-
-
-
-
-  <tr>
-    <td>Urdu</td>
-    <td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td>
-    <td>20</td><td>14</td><td>33</td><td>67</td><td>B</td>
-  </tr>
-
-  <tr>
-    <td>Kashmiri</td>
-    <td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td>
-    <td>21</td><td>14</td><td>33</td><td>68</td><td>B</td>
-  </tr>
-
-  <tr class="grand">
-    <td>Grand Total</td>
-    <td colspan="6">—</td>
-    <td>88</td><td>61</td><td>143</td><td>292</td><td>B</td>
-  </tr>
-</table>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <div class="signature">Class Teacher</div>
-  <div class="signature">Exam I/C</div>
-  <div class="signature">Headmaster</div>
-</div>
-
-  </div>
-</div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script>
-function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF("p","mm","a4");
-
-  html2canvas(document.querySelector(".page"),{
-    scale:2,
-    useCORS:true
-  }).then(canvas=>{
-    pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
-    pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
-  });
-}
-</script>
-</body>
-</html>
