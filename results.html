@@ -39,10 +39,10 @@ body{
 /* ===== HEADER ===== */
 .header{
   display:grid;
-  grid-template-columns:30mm auto 30mm;
+  grid-template-columns:35mm auto 35mm; /* logo | title | photo */
   align-items:center;
   border-bottom:2px solid #004d40;
-  padding-bottom:5mm;
+  padding-bottom:6mm;
 }
 
 .logo,.photo{
@@ -66,12 +66,12 @@ body{
 
 .title h2{
   margin:0;
-  font-size:18px; /* increased header size */
-}
+  font-size:32px; /* DOUBLED title size */
+  letter-spacing:0.5px;
 }
 
 .title div{
-  font-size:12px;
+  font-size:14px; /* scaled with title */
 }
 
 /* ===== STUDENT INFO ===== */
@@ -79,9 +79,8 @@ body{
   margin-top:5mm;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  font-size:12.5px; /* increased */
+  font-size:12.5px;
   gap:3mm;
-}
 }
 
 /* ===== TABLE ===== */
@@ -100,7 +99,10 @@ table{
 
 th,td{
   border:1px solid #333;
-  padding:6px 4px; /* INCREASED padding = taller rows
+  padding:6px 4px; /* INCREASED padding = taller rows */
+  text-align:center;
+  word-wrap:break-word;
+  line-height:1.6; /* increases row height */
 }
 
 th{
@@ -233,7 +235,6 @@ function downloadPDF(){
     pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
   });
 }
-</script></body>
+</script>
+</body>
 </html>
-
-
