@@ -1,55 +1,96 @@
+/* Base Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f7f6;
+  background: #f5f7f6; /* Very light grey for background */
   text-align: center;
+  color: #333; /* Default dark text color for better readability */
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
 }
 
+/* Header Section */
 .app-header {
-  background: #0b5e3c;
+  background: #0b5e3c; /* Dark Forest Green */
   color: white;
   padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
 .motto {
   font-size: 14px;
   opacity: 0.9;
+  margin-top: 5px;
 }
 
+/* Ticker/Announcement Bar */
 .ticker {
-  background: #ffd700;
+  background: #ffd700; /* Gold */
+  color: #0b5e3c; /* Dark green text on gold for contrast */
   padding: 8px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
+/* Menu Container & Layout */
 .menu {
+  /* Constrain the grid width for better viewing on large screens */
+  max-width: 600px; 
+  margin: 20px auto; /* Center the grid container */
+  
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  padding: 20px;
+  padding: 0 20px; /* Padding for mobile edges */
 }
 
-.menu button {
-  padding: 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-footer {
-  padding: 10px;
-  font-size: 12px;
-  color: #555;
-}
+/* Menu Buttons (Combined Styles) */
+.menu button,
 .menu-btn {
-  display: block;
+  /* Reset default button appearance for consistency */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+  
+  display: block; /* Ensures anchor links behave like buttons */
+  width: 100%;
   padding: 20px;
   font-size: 16px;
+  font-weight: 600; /* Slightly bolder text */
   text-decoration: none;
+  text-align: center;
   color: #000;
   background: white;
+  border: none;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer, slightly larger shadow */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for interaction */
 }
+
+/* Interaction States */
+.menu button:hover,
+.menu-btn:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Lift on hover */
+  transform: translateY(-2px); /* Slight upward shift */
+}
+
+.menu button:active,
+.menu-btn:active {
+  background: #f0f0f0; /* Darken background slightly on press */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Flatten shadow on press */
+  transform: translateY(0);
+}
+
+/* Footer */
+footer {
+  padding: 20px; /* Increased padding */
+  font-size: 12px;
+  color: #777; /* Softer grey color */
+  margin-top: 30px; /* Space above footer */
+}
+
