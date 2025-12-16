@@ -5,23 +5,105 @@
 <title>Results | GPS Pethgam Wagoora</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
+
 <header class="app-header">
-  <h2>🎓 Student Results</h2>
+  <h2>🎓 Online Result Checker</h2>
 </header>
 
 <section class="content">
-  <p>Check student results and download marksheets.</p>
 
-  <p><strong>Coming Soon:</strong></p>
-  <ul>
-    <li>Result Checker</li>
-    <li>Marksheet PDF Download</li>
-  </ul>
+  <!-- RESULT SEARCH -->
+  <input type="text" id="roll" placeholder="Enter Roll No (e.g. 406)">
+  <button onclick="checkResult()">Check Result</button>
 
+  <!-- RESULT CARD -->
+  <div id="resultBox" style="display:none; margin-top:20px">
+
+    <h3>GOVERNMENT PRIMARY SCHOOL</h3>
+    <p><strong>PETHGAM WAGOORA – 193109</strong></p>
+
+    <hr>
+
+    <p><b>Student Name:</b> MAHIRA SALAM</p>
+    <p><b>Father’s Name:</b> ABDUL SALAM BHAT</p>
+    <p><b>Mother’s Name:</b> GULSHANA BEGUM</p>
+    <p><b>Class:</b> 4th | <b>Roll No:</b> 406</p>
+    <p><b>Adm No:</b> 124 | <b>DOB:</b> 15-05-2017</p>
+    <p><b>Session:</b> Nov–Dec 2024</p>
+
+    <table border="1" width="100%" style="margin-top:10px; font-size:13px">
+      <tr>
+        <th>Subject</th>
+        <th>Total (100)</th>
+        <th>Grade</th>
+      </tr>
+      <tr><td>English</td><td>57</td><td>B</td></tr>
+      <tr><td>Math</td><td>43</td><td>C</td></tr>
+      <tr><td>EVS</td><td>57</td><td>B</td></tr>
+      <tr><td>Urdu</td><td>67</td><td>B</td></tr>
+      <tr><td>Kashmiri</td><td>68</td><td>B</td></tr>
+    </table>
+
+    <p><b>Total Marks:</b> 292 / 500</p>
+    <p><b>Percentage:</b> 58%</p>
+    <p><b>Overall Grade:</b> B</p>
+    <p><b>Result:</b> PASS | PROMOTED</p>
+
+    <p><b>Remarks:</b> MAHIRA SALAM has performed well but needs attention in Mathematics.</p>
+
+    <button onclick="downloadPDF()">⬇ Download Marksheet (PDF)</button>
+  </div>
+
+  <br>
   <a href="index.html" class="menu-btn">⬅ Back to Home</a>
+
 </section>
+
+<script>
+function checkResult() {
+  let roll = document.getElementById("roll").value;
+  if (roll === "406") {
+    document.getElementById("resultBox").style.display = "block";
+  } else {
+    alert("Result not found");
+  }
+}
+
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(14);
+  doc.text("GOVERNMENT PRIMARY SCHOOL", 40, 15);
+  doc.text("PETHGAM WAGOORA – 193109", 35, 22);
+
+  doc.setFontSize(10);
+  doc.text("Student Name: MAHIRA SALAM", 10, 35);
+  doc.text("Father's Name: ABDUL SALAM BHAT", 10, 42);
+  doc.text("Class: 4th     Roll No: 406", 10, 49);
+  doc.text("Session: Nov–Dec 2024", 10, 56);
+
+  doc.text("English: 57", 10, 70);
+  doc.text("Math: 43", 10, 76);
+  doc.text("EVS: 57", 10, 82);
+  doc.text("Urdu: 67", 10, 88);
+  doc.text("Kashmiri: 68", 10, 94);
+
+  doc.text("Total: 292 / 500", 10, 110);
+  doc.text("Percentage: 58%", 10, 116);
+  doc.text("Grade: B | Result: PASS", 10, 122);
+
+  doc.text("Headmaster Signature", 130, 145);
+
+  doc.save("Mahira_Salam_Marksheet.pdf");
+}
+</script>
+
 </body>
-</html>
+  </html>
