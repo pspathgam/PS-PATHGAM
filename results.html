@@ -2,23 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Result | GPS Pethgam Wagoora</title>
+<title>Online Result – GPS Pethgam Wagoora</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="referrer" content="no-referrer">
-
-<!-- PDF Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-/* ===== PAGE ===== */
 body{
   margin:0;
   background:#ccc;
   font-family:Arial, sans-serif;
 }
 
+/* ===== A4 PAGE ===== */
 .page{
   width:210mm;
   height:297mm;
@@ -29,29 +23,40 @@ body{
   border:2px solid #004d40;
 }
 
+/* ===== ROTATED FULL MARKS SHEET ===== */
+.rotated-sheet{
+  width:297mm;
+  height:210mm;
+  position:absolute;
+  top:0;
+  left:0;
+  transform:rotate(90deg);
+  transform-origin:top left;
+  margin-left:210mm;
+  padding:8mm;
+  box-sizing:border-box;
+}
+
 /* ===== HEADER ===== */
 .header{
-  position:absolute;
-  top:5mm;
-  left:5mm;
-  right:5mm;
-  height:25mm;
   display:grid;
   grid-template-columns:30mm auto 30mm;
   align-items:center;
   border-bottom:2px solid #004d40;
+  padding-bottom:4mm;
 }
 
 .logo, .photo{
-  width:25mm;
-  height:25mm;
-  border:1px solid #333;
+  width:26mm;
+  height:26mm;
+  border:1px solid #000;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:9px;
 }
 
-.logo img, .photo img{
+.logo img,.photo img{
   max-width:100%;
   max-height:100%;
 }
@@ -59,26 +64,28 @@ body{
 .title{
   text-align:center;
 }
+
 .title h2{
   margin:0;
   font-size:16px;
 }
+
 .title div{
   font-size:12px;
 }
 
-/* ===== ROTATED TABLE WRAPPER ===== */
-.rotated-table-wrapper{
-  position:absolute;
-  top:35mm;
-  left:0;
-  width:297mm;          /* A4 height becomes width */
-  height:210mm;         /* A4 width becomes height */
-  transform:rotate(90deg);
-  transform-origin: top left;
-  margin-left:210mm;
-  padding:8mm;
-  box-sizing:border-box;
+/* ===== STUDENT INFO ===== */
+.info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
+  font-size:11px;
+  margin-top:4mm;
+}
+
+.info div{
+  border:1px solid #333;
+  padding:3px;
 }
 
 /* ===== TABLE ===== */
@@ -86,12 +93,13 @@ table{
   width:100%;
   height:100%;
   border-collapse:collapse;
+  margin-top:4mm;
   font-size:11px;
 }
 
-th, td{
+th,td{
   border:1px solid #333;
-  padding:4px;
+  padding:3px;
   text-align:center;
 }
 
@@ -99,10 +107,164 @@ th{
   background:#c8e6c9;
 }
 
+.subject{
+  text-align:left;
+  font-weight:bold;
+}
+
 .grand{
   background:#81c784;
   font-weight:bold;
 }
+
+/* ===== FOOTER ===== */
+.footer{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8mm;
+  margin-top:6mm;
+  font-size:11px;
+}
+
+.sign{
+  border-top:1px solid #000;
+  text-align:center;
+  padding-top:4mm;
+}
+button{
+  display:block;
+  margin:10px auto;
+  padding:8px 20px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="downloadPDF()">Download PDF Marksheet</button>
+
+<div class="page" id="printArea">
+  <div class="rotated-sheet">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png" alt="School Logo">
+      </div>
+
+      <div class="title">
+        <h2>GOVERNMENT PRIMARY SCHOOL</h2>
+        <div>PETHGAM WAGOORA – 193109</div>
+        <div><b>SESSION:</b> Nov–Dec 2024</div>
+      </div>
+
+      <div class="photo">
+        <img src="student.png" alt="Student Photo">
+      </div>
+    </div>
+
+    <!-- STUDENT INFO -->
+    <div class="info">
+      <div><b>Name:</b> MAHIRA SALAM</div>
+      <div><b>Adm No:</b> 124</div>
+      <div><b>Class:</b> 4th</div>
+      <div><b>Roll No:</b> 406</div>
+
+      <div><b>Father:</b> ABDUL SALAM BHAT</div>
+      <div><b>Mother:</b> GULSHANA BEGUM</div>
+      <div><b>DOB:</b> 15-05-2017</div>
+      <div><b>PEN:</b> 22125154160</div>
+    </div>
+
+    <!-- MARKS TABLE -->
+    <table>
+      <tr>
+        <th rowspan="2">Subject</th>
+        <th colspan="6">Formative Assessment (5)</th>
+        <th rowspan="2">FA Total</th>
+        <th rowspan="2">CCA (20)</th>
+        <th rowspan="2">SA</th>
+        <th rowspan="2">Total (100)</th>
+        <th rowspan="2">Grade</th>
+      </tr>
+      <tr>
+        <th>FA1</th><th>FA2</th><th>FA3</th>
+        <th>FA4</th><th>FA5</th><th>FA6</th>
+      </tr>
+
+      <tr>
+        <td class="subject">English</td>
+        <td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
+        <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td>
+      </tr>
+
+      <tr>
+        <td class="subject">Math</td>
+        <td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td>
+        <td>13</td><td>9</td><td>21</td><td>43</td><td>C</td>
+      </tr>
+
+      <tr>
+        <td class="subject">EVS</td>
+        <td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
+        <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td>
+      </tr>
+
+      <tr>
+        <td class="subject">Urdu</td>
+        <td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td>
+        <td>20</td><td>14</td><td>33</td><td>67</td><td>B</td>
+      </tr>
+
+      <tr>
+        <td class="subject">Kashmiri</td>
+        <td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td>
+        <td>21</td><td>14</td><td>33</td><td>68</td><td>B</td>
+      </tr>
+
+      <tr class="grand">
+        <td>GRAND TOTAL</td>
+        <td colspan="6">—</td>
+        <td>88</td>
+        <td>61</td>
+        <td>143</td>
+        <td>292</td>
+        <td>B</td>
+      </tr>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="sign">Class Teacher</div>
+      <div class="sign">Exam In-Charge</div>
+      <div class="sign">Headmaster</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p","mm","a4");
+
+  html2canvas(document.getElementById("printArea"),{
+    scale:2,
+    useCORS:true
+  }).then(canvas=>{
+    pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
+    pdf.save("GPS_Pethgam_Marksheet.pdf");
+  });
+}
+</script>
+
+</body>
+</html>}
 
 /* ===== PDF BUTTON ===== */
 .controls{
