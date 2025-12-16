@@ -12,31 +12,63 @@ body{
   font-family:Arial, sans-serif;
 }
 
-/* ===== A4 PAGE ===== */
+/* ===== PAGE CONTAINER ===== */
 .page{
   width:210mm;
   height:297mm;
-  background:#fff;
-  margin:auto;
   position:relative;
-  overflow:hidden;
-  border:2px solid #004d40;
+  overflow:hidden; /* prevents column cut */
 }
 
-/* ===== ROTATED FULL MARKS SHEET ===== */
+/* ===== ROTATED FULL MARKS SHEET (FIXED) ===== */
 .rotated-sheet{
-  width:297mm;
-  height:210mm;
+  width:297mm;   /* landscape width */
+  height:210mm;  /* landscape height */
   position:absolute;
   top:0;
   left:0;
-  transform:rotate(90deg);
+
+  /* KEY FIX: rotate + translate instead of margin-left */
+  transform:rotate(90deg) translateY(-210mm);
   transform-origin:top left;
-  margin-left:210mm;
+
   padding:8mm;
   box-sizing:border-box;
 }
 
+h2{
+  text-align:center;
+  margin:0 0 6mm 0;
+}
+
+/* ===== TABLE STYLING ===== */
+.table-wrap{
+  width:100%;
+  overflow:hidden; /* ensures last column visible */
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed; /* IMPORTANT: prevents overflow */
+  font-size:12px;
+}
+
+th, td{
+  border:1px solid #000;
+  padding:4px 2px;
+  text-align:center;
+  word-wrap:break-word;
+}
+
+th{
+  background:#f2f2f2;
+  font-weight:bold;
+}
+
+/* Adjust column widths safely */
+.col-roll{width:8%;}
+.col-name{width:22%;
 /* ===== HEADER ===== */
 .header{
   display:grid;
