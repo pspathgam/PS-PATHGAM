@@ -2,466 +2,134 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Online Results | GPS Pethgam Wagoora</title>
+<title>Result | GPS Pethgam Wagoora</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f2f2f2;
-  margin:0;
-  padding:10px;
-}
+body{font-family:Arial,sans-serif;background:#eee;margin:0;padding:10px;font-size:12px}
+.search{background:#fff;padding:10px;max-width:420px;margin:auto;border-radius:6px;text-align:center}
+.search input{width:100%;padding:8px;margin-bottom:8px}
+.search button{background:#2e7d32;color:#fff;border:none;padding:8px 16px}
 
-/* Search */
-.search-box{
-  max-width:420px;
-  margin:auto;
-  background:#fff;
-  padding:15px;
-  border-radius:8px;
-  text-align:center;
-}
-.search-box input{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-}
-.search-box button{
-  background:#2e7d32;
-  color:#fff;
-  border:none;
-  padding:10px 20px;
-  border-radius:5px;
-}
+#sheet{display:none;background:#fff;border:3px solid #004d40;max-width:1200px;margin:15px auto;padding:10px}
 
-/* Marksheet */
-#marksheet{
-  display:none;
-  max-width:900px;
-  margin:20px auto;
-  background:#fff;
-  border:3px solid #004d40;
-  padding:10px;
-  font-size:12px;
-}
-
-.header{
-  text-align:center;
-  background:#00695c;
-  color:white;
-  padding:8px;
-}
+.header{text-align:center;background:#00695c;color:#fff;padding:6px}
 .header h2{margin:0}
 
-.info-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:5px;
-  margin-top:10px;
-}
+.info{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}
+.info div{border:1px solid #ccc;padding:4px}
 
-.info-grid div{
-  border:1px solid #ccc;
-  padding:5px;
-}
-
-/* Table */
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-th,td{
-  border:1px solid #555;
-  padding:4px;
-  text-align:center;
-}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{border:1px solid #333;padding:3px;text-align:center;font-size:11px}
 th{background:#c8e6c9}
 
-/* Summary */
-.summary{
-  margin-top:10px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5px;
-}
-.summary div{
-  border:1px solid #555;
-  padding:5px;
-}
+.grand{background:#81c784;font-weight:bold}
 
-/* Footer */
-.footer{
-  margin-top:15px;
-  display:flex;
-  justify-content:space-between;
-  font-size:11px;
-}
-.footer div{
-  width:30%;
-  text-align:center;
-  padding-top:20px;
-  border-top:1px solid #000;
-}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.summary div{border:1px solid #333;padding:5px}
 
-/* Buttons */
-.actions{
-  margin-top:10px;
-  text-align:center;
-}
-.actions button{
-  background:#1565c0;
-  color:#fff;
-  border:none;
-  padding:10px 20px;
-  border-radius:5px;
-}
+.footer{display:flex;justify-content:space-between;margin-top:15px}
+.footer div{width:30%;text-align:center;border-top:1px solid #000;padding-top:15px}
+
+button.pdf{margin:10px auto;display:block;background:#1565c0;color:#fff;border:none;padding:8px 20px}
 </style>
 </head>
 
 <body>
 
-<!-- SEARCH -->
-<div class="search-box">
-  <h3>🎓 Online Result Checker</h3>
-  <input id="roll" placeholder="Enter Roll No (406)">
-  <button onclick="showResult()">Check Result</button>
+<div class="search">
+<h3>🎓 Online Result Checker</h3>
+<input id="roll" placeholder="Enter Roll No (406)">
+<button onclick="show()">Check Result</button>
 </div>
 
-<!-- MARKSHEET -->
-<div id="marksheet">
+<div id="sheet">
 
-  <div class="header">
-    <h2>GOVERNMENT PRIMARY SCHOOL</h2>
-    <div>PETHGAM WAGOORA – 193109</div>
-  </div>
+<div class="header">
+<h2>GOVERNMENT PRIMARY SCHOOL</h2>
+PETHGAM WAGOORA – 193109
+</div>
 
-  <div class="info-grid">
-    <div><b>Student Name:</b> MAHIRA SALAM</div>
-    <div><b>Adm. No:</b> 124</div>
-    <div><b>Father’s Name:</b> ABDUL SALAM BHAT</div>
-    <div><b>D.O.B:</b> 15-05-2017</div>
-    <div><b>Mother’s Name:</b> GULSHANA BEGUM</div>
-    <div><b>Class:</b> 4th</div>
-    <div><b>Session:</b> Nov–Dec 2024</div>
-    <div><b>Roll No:</b> 406</div>
-  </div>
+<div class="info">
+<div><b>Student:</b> MAHIRA SALAM</div>
+<div><b>Adm No:</b> 124</div>
+<div><b>Father:</b> ABDUL SALAM BHAT</div>
+<div><b>DOB:</b> 15-05-2017</div>
+<div><b>Mother:</b> GULSHANA BEGUM</div>
+<div><b>Class:</b> 4th</div>
+<div><b>Roll:</b> 406</div>
+<div><b>Session:</b> Nov-Dec 2024</div>
+</div>
 
-  <table>
-    <tr>
-      <th>Subject</th>
-      <th>Total Marks</th>
-      <th>Grade</th>
-      <th>Proficiency</th>
-    </tr>
-    <tr><td>English</td><td>57</td><td>B</td><td>Mountain</td></tr>
-    <tr><td>Math</td><td>43</td><td>C</td><td>Stream</td></tr>
-    <tr><td>EVS</td><td>57</td><td>B</td><td>Mountain</td></tr>
-    <tr><td>Urdu</td><td>67</td><td>B</td><td>Mountain</td></tr>
-    <tr><td>Kashmiri</td><td>68</td><td>B</td><td>Mountain</td></tr>
-    <tr>
-      <th>Grand Total</th>
-      <th>292 / 500</th>
-      <th>B</th>
-      <th>Stream</th>
-    </tr>
-  </table>
+<table>
+<tr>
+<th rowspan="2">Subject</th>
+<th colspan="6">Formative Assessment (5×6 = 30)</th>
+<th rowspan="2">FA Total (30)</th>
+<th rowspan="2">CCA (20)</th>
+<th rowspan="2">SA (50)</th>
+<th rowspan="2">Total (100)</th>
+<th rowspan="2">Grade</th>
+<th rowspan="2">Level</th>
+</tr>
+<tr>
+<th>FA1</th><th>FA2</th><th>FA3</th><th>FA4</th><th>FA5</th><th>FA6</th>
+</tr>
 
-  <div class="summary">
-    <div><b>Overall Percentage:</b> 58%</div>
-    <div><b>Result:</b> PASS (PROMOTED)</div>
-    <div><b>Class Rank:</b> 4</div>
-    <div><b>School Rank:</b> 17</div>
-  </div>
+<tr><td>English</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td><td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td></tr>
+<tr><td>Math</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>13</td><td>9</td><td>21</td><td>43</td><td>C</td><td>Stream</td></tr>
+<tr><td>EVS</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td><td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td></tr>
+<tr><td>Urdu</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>20</td><td>14</td><td>33</td><td>67</td><td>B</td><td>Mountain</td></tr>
+<tr><td>Kashmiri</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td><td>21</td><td>14</td><td>33</td><td>68</td><td>B</td><td>Mountain</td></tr>
 
-  <p><b>Remarks:</b> MAHIRA SALAM has performed well but needs significant attention in Mathematics.</p>
+<tr class="grand">
+<td>Grand Total</td>
+<td>12</td><td>12</td><td>14</td><td>15</td><td>16</td><td>19</td>
+<td>88</td><td>61</td><td>143</td><td>292</td><td>B</td><td>Stream</td>
+</tr>
+</table>
 
-  <div class="footer">
-    <div>Class Teacher</div>
-    <div>Exam I/C</div>
-    <div>Headmaster</div>
-  </div>
+<div class="summary">
+<div><b>Overall %:</b> 58%</div>
+<div><b>Result:</b> PASS (PROMOTED)</div>
+<div><b>School Rank:</b> 17</div>
+</div>
+
+<p><b>Remarks:</b> MAHIRA SALAM has performed well but needs significant attention in Mathematics.</p>
+
+<div class="footer">
+<div>Class Teacher</div>
+<div>Exam I/C</div>
+<div>Headmaster</div>
+</div>
 
 </div>
 
-<div class="actions">
-  <button onclick="downloadPDF()">⬇ Download PDF Marksheet</button>
-</div>
+<button class="pdf" onclick="pdf()">⬇ Download PDF Marksheet</button>
 
 <script>
-function showResult(){
-  if(document.getElementById("roll").value==="406"){
-    document.getElementById("marksheet").style.display="block";
-  }else{
-    alert("Result not found");
-  }
+function show(){
+ if(document.getElementById("roll").value==="406")
+  document.getElementById("sheet").style.display="block";
+ else alert("Result not found");
 }
 
-function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF("p","mm","a4");
-
-  html2canvas(document.getElementById("marksheet"),{scale:2}).then(canvas=>{
-    const img=canvas.toDataURL("image/png");
-    doc.addImage(img,"PNG",5,5,200,0);
-    doc.save("Mahira_Salam_Marksheet.pdf");
-  });
+function pdf(){
+ const {jsPDF}=window.jspdf;
+ const doc=new jsPDF("l","mm","a4");
+ html2canvas(document.getElementById("sheet"),{scale:2}).then(c=>{
+  doc.addImage(c.toDataURL("image/png"),"PNG",5,5,285,0);
+  doc.save("Mahira_Salam_Marksheet.pdf");
+ });
 }
 </script>
 
 </body>
 </html>
 
-  const pdf=new jsPDF();
 
-  pdf.text("GOVERNMENT PRIMARY SCHOOL",20,20);
-  pdf.text("PETHGAM WAGOORA – 193109",20,28);
 
-  pdf.text("Student: MAHIRA SALAM",20,40);
-  pdf.text("Class: 4th  Roll: 406",20,48);
-  pdf.text("English: 57",20,60);
-  pdf.text("Math: 43",20,68);
-  pdf.text("EVS: 57",20,76);
-  pdf.text("Urdu: 67",20,84);
-  pdf.text("Kashmiri: 68",20,92);
-
-  pdf.text("Total: 292 / 500",20,110);
-  pdf.text("Result: PASS",20,118);
-
-  pdf.save("Mahira_Salam_Marksheet.pdf");
-}
-</script>
-
-</body>
-</html>                                    border-bottom: 1px dotted #ccc;
-        
-              
-                    margin-right: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 9px;
-        }
-        .color-box {
-            width: 8px;
-            height: 8px;
-            margin-right: 3px;
-            border: 1px solid #000;
-        }
-    </style>
-</head>
-<body>
-
-<div class="report-card">
-    <div class="header">
-        <img src="path/to/school_logo.jpg" alt="School Logo">
-        <h1>GOVERNMENT PRIMARY SCHOOL</h1>
-        <p>PETHGAM WAGOORA 193109</p>
-    </div>
-
-    <div class="student-info">
-        <div class="info-row">
-            <div class="info-item info-label">Student Name:</div>
-            <div class="info-item info-value">MAHIRA SALAM</div>
-            <div class="info-item info-label">Adm. No:</div>
-            <div class="info-item info-value">124</div>
-            <div class="info-item info-label">D.O.B:</div>
-            <div class="info-item info-value">15-05-2017</div>
-            <div class="info-item info-value red-text">#REF!</div>
-        </div>
-        <div class="info-row">
-            <div class="info-item info-label">Fathers Name:</div>
-            <div class="info-item info-value">ABDUL SALAM BHAT</div>
-            <div class="info-item info-label">Class:</div>
-            <div class="info-item info-value">4th</div>
-            <div class="info-item info-value"></div>
-            <div class="info-item info-value"></div>
-        </div>
-        <div class="info-row">
-            <div class="info-item info-label">Mothers Name:</div>
-            <div class="info-item info-value">GULSHANA BEGUM</div>
-            <div class="info-item info-label">Roll No:</div>
-            <div class="info-item info-value">406</div>
-            <div class="info-item info-value"></div>
-            <div class="info-item info-value"></div>
-        </div>
-        <div class="info-row">
-            <div class="info-item info-label red-bg">Academic Session:</div>
-            <div class="info-item info-value">Nov-Dec. 2024</div>
-            <div class="info-item info-label">PEN No.</div>
-            <div class="info-item info-value">22125154160</div>
-            <div class="info-item info-value"></div>
-            <div class="info-item info-value"></div>
-        </div>
-    </div>
-
-    <div class="assessment-table-container">
-        <table class="assessment-table">
-            <thead>
-                <tr>
-                    <th rowspan="2">Subject</th>
-                    <th colspan="5">FA Test</th>
-                    <th rowspan="2">FA6 (5)*</th>
-                    <th rowspan="2">Total (30)*</th>
-                    <th rowspan="2">Co-Curricular Activities (20)*</th>
-                    <th rowspan="2">Total (50)*</th>
-                    <th rowspan="2">Total (FA+CCA+SA) (100)*</th>
-                    <th rowspan="2">Grade</th>
-                    <th rowspan="2">Proficiency Level (Stream/Mount ain/Sky)</th>
-                </tr>
-                <tr>
-                    <th>FA1 (5)*</th>
-                    <th>FA2 (5)*</th>
-                    <th>FA3 (5)*</th>
-                    <th>FA4 (5)*</th>
-                    <th>FA5 (5)*</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="subject-col">English</td>
-                    <td>2</td><td>2</td><td>3</td><td>3</td><td>4</td><td>4</td><td>18</td><td>12</td><td>30</td><td>57</td><td>B</td><td>Mountain</td>
-                </tr>
-                <tr>
-                    <td class="subject-col">Math</td>
-                    <td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>13</td><td>9</td><td>22</td><td>43</td><td>C</td><td>Stream</td>
-                </tr>
-                <tr>
-                    <td class="subject-col">EVS</td>
-                    <td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td><td>17</td><td>12</td><td>29</td><td>57</td><td>B</td><td>Mountain</td>
-                </tr>
-                <tr>
-                    <td class="subject-col">Urdu</td>
-                    <td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>20</td><td>14</td><td>34</td><td>67</td><td>B</td><td>Mountain</td>
-                </tr>
-                <tr>
-                    <td class="subject-col">Kashmiri</td>
-                    <td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td><td>21</td><td>14</td><td>35</td><td>68</td><td>B</td><td>Mountain</td>
-                </tr>
-                <tr class="grand-total-row">
-                    <td class="subject-col">Grand Total</td>
-                    <td>12</td><td>12</td><td>14</td><td>15</td><td>16</td><td>19</td><td>88</td><td>61</td><td>149</td><td>292</td><td>B</td><td>Stream</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="footer-grid">
-        <div class="footer-section grade-key">
-            <div class="section-header">Percentage/Grade Key</div>
-            <table class="grade-table">
-                <thead>
-                    <tr>
-                        <th>%age Grade Scale</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>>85% to 100%</td><td>A+</td></tr>
-                    <tr><td>>70% to 85%</td><td>A</td></tr>
-                    <tr><td>>55% to 70%</td><td>B</td></tr>
-                    <tr><td>>40% to 55%</td><td>C</td></tr>
-                    <tr><td>>33% to 40%</td><td>D</td></tr>
-                    <tr><td>0% to 33%</td><td>E</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="footer-section proficiency-level">
-            <div class="section-header">Level of Proficiency</div>
-            <table class="proficiency-table">
-                <thead>
-                    <tr><th>Sky</th><th>#REF!</th><th>❌</th></tr>
-                </thead>
-                <tbody>
-                    <tr class="mountain"><th>Mountain</th><td>#REF!</td><td>❌</td></tr>
-                    <tr class="stream"><th>Stream</th><td>#REF!</td><td>✔️</td></tr>
-                </tbody>
-                <thead>
-                    <tr><th>School Rank</th><td colspan="2">17</td></tr>
-                </thead>
-            </table>
-        </div>
-
-        <div class="footer-section final-results">
-            <div class="section-header">Final Results</div>
-            <table class="results-table">
-                <tr><td>Total Marks Obtained</td><td>292</td></tr>
-                <tr><td>Max. Marks</td><td>500</td></tr>
-                <tr><td>Overall Percentage</td><td>58%</td></tr>
-                <tr class="overall-grade"><td>Overall Grade</td><td>Average</td></tr>
-                <tr class="result-row"><td>Result</td><td>Pass</td></tr>
-                <tr><td>Position in Class</td><td>Promote</td></tr>
-            </table>
-            <div class="promote-box">PROMOTE</div>
-        </div>
-    </div>
-
-    <div class="bottom-grid">
-        <div class="bar-chart-section">
-            <div class="bar-chart-label">Subject Wise Bar Graph Chart</div>
-            <div class="bar-chart-area">
-                <div class="bar-wrapper">
-                    <div class="bar" style="height: 57px;"></div>
-                    <div class="bar-value">57</div>
-                    <div class="bar-label">English</div>
-                </div>
-                <div class="bar-wrapper">
-                    <div class="bar" style="height: 43px;"></div>
-                    <div class="bar-value">43</div>
-                    <div class="bar-label">Math</div>
-                </div>
-                <div class="bar-wrapper">
-                    <div class="bar" style="height: 57px;"></div>
-                    <div class="bar-value">57</div>
-                    <div class="bar-label">EVS</div>
-                </div>
-                <div class="bar-wrapper">
-                    <div class="bar" style="height: 67px;"></div>
-                    <div class="bar-value">67</div>
-                    <div class="bar-label">Urdu</div>
-                </div>
-                <div class="bar-wrapper">
-                    <div class="bar" style="height: 68px;"></div>
-                    <div class="bar-value">68</div>
-                    <div class="bar-label">Kashmiri</div>
-                </div>
-            </div>
-            <div class="bar-legend">
-                <div class="legend-item"><div class="color-box" style="background-color: #3f51b5;"></div>1</div>
-            </div>
-        </div>
-
-        <div class="remarks-section">
-            <div class="section-header">General Remarks</div>
-            <div class="remarks-content">
-                MAHIRA SALAM has performed well in but needs significant attention in Math.
-            </div>
-        </div>
-
-        <div class="class-attendance-section">
-            <div class="section-header">Class Rank</div>
-            <table class="attendance-table">
-                <tr><td>Attendance %age</td><td></td></tr>
-                <tr><td>Empathy & Teamwork</td><td></td></tr>
-                <tr><td>Discipline</td><td></td></tr>
-                <tr><td>Sports</td><td></td></tr>
-                <tr><td>Art and Craft</td><td></td></tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="signatures">
-        <div class="signature-item">Sign. Form Teacher</div>
-        <div class="signature-item">Sign. Exam I/C:</div>
-        <div class="signature-item">Parents Signature:</div>
-        <div class="signature-item">Seal & Signature of Headmaster</div>
-    </div>
-</div>
-
-</body>
-</html>
+.                    
