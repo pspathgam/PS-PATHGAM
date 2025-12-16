@@ -264,112 +264,13 @@ function downloadPDF(){
 </script>
 
 </body>
-</html>}
+</html>
 
-/* ===== PDF BUTTON ===== */
-.controls{
-  text-align:center;
-  padding:8px;
-}
-button{
-  padding:6px 14px;
-  background:#2e7d32;
-  color:#fff;
-  border:none;
-  margin:4px;
-}
 
-</style>
-</head>
 
-<body>
 
-<div class="controls">
-  <button onclick="downloadPDF()">Download PDF</button>
-</div>
-
-<div id="page" class="page">
-
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">
-    <img src="assets/logo.png" alt="School Logo">
-  </div>
-
-  <div class="title">
-    <h2>GOVERNMENT PRIMARY SCHOOL</h2>
-    <div>PETHGAM WAGOORA – 193109</div>
-  </div>
-
-  <div class="photo">
-    <img src="assets/student.png" alt="Student Photo">
-  </div>
-</div>
-
-<!-- ROTATED TABLE -->
-<div class="rotated-table-wrapper">
-
-<table>
-  <tr>
-    <th rowspan="2">Subject</th>
-    <th colspan="6">Formative Assessment (5)</th>
-    <th rowspan="2">FA Total</th>
-    <th rowspan="2">CCA (20)</th>
-    <th rowspan="2">SA</th>
-    <th rowspan="2">Total (100)</th>
-    <th rowspan="2">Grade</th>
-    <th rowspan="2">Level</th>
-  </tr>
-  <tr>
-    <th>FA1</th><th>FA2</th><th>FA3</th><th>FA4</th><th>FA5</th><th>FA6</th>
-  </tr>
-
-  <tr>
-    <td>English</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
-    <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td>
-  </tr>
-
-  <tr>
-    <td>Math</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td>
-    <td>13</td><td>9</td><td>21</td><td>43</td><td>C</td><td>Stream</td>
-  </tr>
-
-  <tr>
-    <td>EVS</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td>
-    <td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td>
-  </tr>
-
-  <tr>
-    <td>Urdu</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td>
-    <td>20</td><td>14</td><td>33</td><td>67</td><td>B</td><td>Mountain</td>
-  </tr>
-
-  <tr>
-    <td>Kashmiri</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td>
-    <td>21</td><td>14</td><td>33</td><td>68</td><td>B</td><td>Mountain</td>
-  </tr>
-
-  <tr class="grand">
-    <td>Grand Total</td>
-    <td>12</td><td>12</td><td>14</td><td>15</td><td>16</td><td>19</td>
-    <td>88</td><td>61</td><td>143</td><td>292</td><td>B</td><td>Stream</td>
-  </tr>
-</table>
-
-</div>
-</div>
-
-<script>
-function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF("p","mm","a4");
-
-  html2canvas(document.getElementById("page"),{
-    scale:2,
-    useCORS:true
-  }).then(canvas=>{
-    doc.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
-    doc.save("Result_Marksheet_A4.pdf");
+          pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
+    pdf.save("GPS_Pethgam_Marksheet.pdf");
   });
 }
 </script>
