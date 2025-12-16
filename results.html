@@ -8,51 +8,132 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Result | GPS Pethgam Wagoora</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- PDF libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
-body{font-family:Arial,sans-serif;background:#eee;margin:0;padding:10px;font-size:12px}
-.search{background:#fff;padding:10px;max-width:420px;margin:auto;border-radius:6px;text-align:center}
-.search input{width:100%;padding:8px;margin-bottom:8px}
-.search button{background:#2e7d32;color:#fff;border:none;padding:8px 16px}
+/* ===== A4 PAGE ===== */
+body{background:#ccc;margin:0;padding:10px;font-family:Arial,sans-serif}
+.page{
+  width:210mm;
+  min-height:297mm;
+  background:#fff;
+  margin:auto;
+  border:2px solid #004d40;
+  padding:10mm;
+  font-size:11px;
+}
 
-#sheet{display:none;background:#fff;border:3px solid #004d40;max-width:1200px;margin:15px auto;padding:10px}
+/* ===== HEADER ===== */
+.header{
+  display:grid;
+  grid-template-columns:70px auto 70px;
+  align-items:center;
+  border-bottom:2px solid #004d40;
+  padding-bottom:5px;
+}
+.logo,.photo{
+  width:65px;
+  height:65px;
+  border:1px dashed #333;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+}
+.title{text-align:center}
+.title h2{margin:0;font-size:16px}
+.title div{font-size:12px}
 
-.header{text-align:center;background:#00695c;color:#fff;padding:6px}
-.header h2{margin:0}
+/* ===== INFO ===== */
+.info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
+  margin-top:6px;
+}
+.info div{border:1px solid #999;padding:3px}
 
-.info{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}
-.info div{border:1px solid #ccc;padding:4px}
-
-table{width:100%;border-collapse:collapse;margin-top:8px}
-th,td{border:1px solid #333;padding:3px;text-align:center;font-size:11px}
+/* ===== TABLE ===== */
+table{width:100%;border-collapse:collapse;margin-top:6px}
+th,td{border:1px solid #333;padding:3px;text-align:center}
 th{background:#c8e6c9}
-
 .grand{background:#81c784;font-weight:bold}
 
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
-.summary div{border:1px solid #333;padding:5px}
+/* ===== BAR GRAPH ===== */
+.graph-box{
+  margin-top:10px;
+  border:1px solid #333;
+  padding:5px;
+}
+.graph-title{text-align:center;font-weight:bold;margin-bottom:5px}
+.bars{
+  display:flex;
+  align-items:flex-end;
+  height:120px;
+}
+.bar-wrap{
+  width:20%;
+  text-align:center;
+  font-size:9px;
+}
+.bar{
+  width:70%;
+  margin:auto;
+  background:#3f51b5;
+  color:#fff;
+  font-size:9px;
+}
 
-.footer{display:flex;justify-content:space-between;margin-top:15px}
-.footer div{width:30%;text-align:center;border-top:1px solid #000;padding-top:15px}
+/* ===== FOOTER ===== */
+.footer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+}
+.footer div{
+  width:30%;
+  text-align:center;
+  border-top:1px solid #000;
+  padding-top:15px;
+}
 
-button.pdf{margin:10px auto;display:block;background:#1565c0;color:#fff;border:none;padding:8px 20px}
+/* ===== CONTROLS ===== */
+.search{text-align:center;margin-bottom:10px}
+button{padding:6px 14px;background:#2e7d32;color:#fff;border:none}
+.pdfbtn{margin-top:8px;background:#1565c0}
 </style>
 </head>
 
 <body>
 
 <div class="search">
-<h3>🎓 Online Result Checker</h3>
 <input id="roll" placeholder="Enter Roll No (406)">
 <button onclick="show()">Check Result</button>
+<button class="pdfbtn" onclick="pdf()">Download PDF</button>
 </div>
 
-<div id="sheet">
+<div id="page" class="page" style="display:none">
 
+<!-- HEADER -->
 <div class="header">
-<h2>GOVERNMENT PRIMARY SCHOOL</h2>
-PETHGAM WAGOORA – 193109
+  <div class="logo">School<br>Logo</div>
+  <div class="title">
+    <h2>GOVERNMENT PRIMARY SCHOOL</h2>
+    <div>PETHGAM WAGOORA – 193109</div>
+  </div>
+  <div class="photo">Student<br>Photo</div>
 </div>
 
+<!-- INFO -->
 <div class="info">
 <div><b>Student:</b> MAHIRA SALAM</div>
 <div><b>Adm No:</b> 124</div>
@@ -64,14 +145,15 @@ PETHGAM WAGOORA – 193109
 <div><b>Session:</b> Nov-Dec 2024</div>
 </div>
 
+<!-- ASSESSMENT TABLE -->
 <table>
 <tr>
 <th rowspan="2">Subject</th>
-<th colspan="6">Formative Assessment (5×6 = 30)</th>
-<th rowspan="2">FA Total (30)</th>
-<th rowspan="2">CCA (20)</th>
-<th rowspan="2">SA (50)</th>
-<th rowspan="2">Total (100)</th>
+<th colspan="6">FA (5×6)</th>
+<th rowspan="2">FA Total</th>
+<th rowspan="2">CCA</th>
+<th rowspan="2">SA</th>
+<th rowspan="2">Total</th>
 <th rowspan="2">Grade</th>
 <th rowspan="2">Level</th>
 </tr>
@@ -92,10 +174,16 @@ PETHGAM WAGOORA – 193109
 </tr>
 </table>
 
-<div class="summary">
-<div><b>Overall %:</b> 58%</div>
-<div><b>Result:</b> PASS (PROMOTED)</div>
-<div><b>School Rank:</b> 17</div>
+<!-- BAR GRAPH -->
+<div class="graph-box">
+<div class="graph-title">Subject-wise Performance (Out of 100)</div>
+<div class="bars">
+<div class="bar-wrap">English<div class="bar" style="height:57%">57</div></div>
+<div class="bar-wrap">Math<div class="bar" style="height:43%">43</div></div>
+<div class="bar-wrap">EVS<div class="bar" style="height:57%">57</div></div>
+<div class="bar-wrap">Urdu<div class="bar" style="height:67%">67</div></div>
+<div class="bar-wrap">Kashmiri<div class="bar" style="height:68%">68</div></div>
+</div>
 </div>
 
 <p><b>Remarks:</b> MAHIRA SALAM has performed well but needs significant attention in Mathematics.</p>
@@ -108,20 +196,18 @@ PETHGAM WAGOORA – 193109
 
 </div>
 
-<button class="pdf" onclick="pdf()">⬇ Download PDF Marksheet</button>
-
 <script>
 function show(){
  if(document.getElementById("roll").value==="406")
-  document.getElementById("sheet").style.display="block";
+  document.getElementById("page").style.display="block";
  else alert("Result not found");
 }
 
 function pdf(){
  const {jsPDF}=window.jspdf;
- const doc=new jsPDF("l","mm","a4");
- html2canvas(document.getElementById("sheet"),{scale:2}).then(c=>{
-  doc.addImage(c.toDataURL("image/png"),"PNG",5,5,285,0);
+ const doc=new jsPDF("p","mm","a4");
+ html2canvas(document.getElementById("page"),{scale:2}).then(c=>{
+  doc.addImage(c.toDataURL("image/png"),"PNG",0,0,210,0);
   doc.save("Mahira_Salam_Marksheet.pdf");
  });
 }
@@ -129,7 +215,3 @@ function pdf(){
 
 </body>
 </html>
-
-
-
-.                    
