@@ -205,39 +205,6 @@ body{margin:0;background:#ddd;font-family:Arial,sans-serif;}/* ===== A4 PAGE ===
 <div class="footer">
   <div class="signature">Class Teacher</div>
   <div class="signature">Exam I/C</div>
-  <div class="signature">Headmaster</div>
-</div>
-
-<!-- QR -->
-<div class="qr"><canvas id="qr"></canvas></div>
-
-  </div>
-</div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script><script>
-/* PERFORMANCE BARS AUTO */
-const perf=document.getElementById('performance');
-perf.innerHTML='<h4>Subject-wise Performance (%)</h4>';
-document.querySelectorAll('#marksTable tr[data-total]').forEach(r=>{
-  const s=r.children[0].innerText;
-  const t=r.dataset.total;
-  perf.innerHTML+=`<div class="bar-row"><span>${s}</span><div class="bar" style="--p:${t}%"></div><span>${t}</span></div>`;
-});
-
-/* AUTO QR WITH STUDENT DETAILS */
-const qrText=`GPS Pethgam Wagoora
-Name: MAHIRA SALAM
-Class: 4th
-Roll: 406
-Total: 292`;
-new QRious({element:document.getElementById('qr'),value:qrText,size:300});
-
-function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p','mm','a4');
-  html2canvas(document.querySelector('.page'),{scale:2,useCORS:true})
-  .then(c=>{pdf.addImage(c.toDataURL('image/png'),'PNG',0,0,210,297);pdf.save('Marks_Sheet_GPS_Pethgam.pdf');});
-}
-</script></body>
-</html>
 
 
 
