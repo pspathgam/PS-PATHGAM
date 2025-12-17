@@ -163,7 +163,7 @@ th{background:#c8e6c9;}
 
     <!-- HEADER -->
     <div class="header">
-      <div class="logo">LOGO</div>
+      <div class="logo.png">LOGO</div>
       <div class="title">
         <h2>GOVERNMENT PRIMARY SCHOOL</h2>
         <div>PETHGAM WAGOORA – 193109</div>
@@ -244,7 +244,7 @@ function downloadPDF(){
   html2canvas(document.querySelector(".page"),{scale:2,useCORS:true})
   .then(canvas=>{
     pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
-    pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
+    pdf.save("Marks_Sheet_PS_Pethgam.pdf");
   });
 }
 </script>
