@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sign Up – GPS Pethgam</title>
-<style>
-body{font-family:Arial;background:#f2f2f2;padding:30px;}
-.box{background:#fff;padding:20px;max-width:400px;margin:auto;}
-input,select,button{width:100%;padding:10px;margin:8px 0;}
-</style>
+  <title>Sign Up</title>
 </head>
-<body>
+<body style="font-family:Arial;text-align:center;">
 
-<div class="box">
-<h3>Sign Up Request</h3>
+<h2>📝 Student / Teacher Sign-Up</h2>
 
-<select id="role">
-  <option value="student">Student</option>
-  <option value="teacher">Teacher</option>
-</select>
+<form>
+  <input placeholder="Full Name" required><br><br>
+  <input placeholder="Role (Student/Teacher)" required><br><br>
+  <button type="submit">Submit</button>
+</form>
 
-<input id="name" placeholder="Full Name">
-<input id="id" placeholder="Roll No / Teacher ID">
-<input id="password" placeholder="DOB / Password">
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("✅ Sign-Up submitted.\nPending Admin Approval.");
+  this.reset();
+});
+</script>
 
-<button onclick="signup()">Submit Request</button>
-<p style="font-size:12px;color:green;">
-Approval required by School Admin
-</p>
-</div>
-
-<script src="auth.js"></script>
 </body>
 </html>
