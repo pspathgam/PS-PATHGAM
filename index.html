@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>GPS Pethgam Wagoora</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0b5e3c">
 
@@ -13,7 +13,6 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="app-header">
   <h1>Government Primary School<br>Pethgam Wagoora</h1>
   <p>Established 2005</p>
@@ -23,21 +22,20 @@
   </p>
 </header>
 
-<!-- ================= LOGIN BAR ================= -->
-<section style="text-align:center; padding:10px; background:#e8f5e9;">
-  <a href="login/login.html">🔐 Login</a> |
-  <a href="login/signup.html">📝 Student / Teacher Sign-Up</a> |
-  <a href="admin/dashboard.html">🛡 Admin</a>
+<!-- LOGIN BAR -->
+<section style="text-align:center;background:#e8f5e9;padding:8px;">
+  🔐 <a href="login.html">Login</a> |
+  📝 <a href="signup.html">Student / Teacher Sign-Up</a> |
+  🛡 <a href="admin.html">Admin</a>
 </section>
 
-<!-- ================= TICKER ================= -->
 <section class="ticker">
   <marquee>
     Admissions Open 2025–26 | Results Available | Winter Assignments Uploaded
   </marquee>
 </section>
 
-<!-- ================= RESULT SEARCH ================= -->
+<!-- RESULT SEARCH -->
 <section class="result-check-form">
   <h2>Check Your Result</h2>
 
@@ -52,13 +50,13 @@
   </p>
 </section>
 
-<!-- ================= RESULT CONTAINER ================= -->
-<!-- IMPORTANT: stays EMPTY until search -->
-<div id="report-card-container" style="display:none;"></div>
+<!-- RESULT CONTAINER -->
+<div id="report-card-container" style="display:none;margin:10px;">
+</div>
 
-<!-- ================= MAIN MENU ================= -->
+<!-- MENU -->
 <section class="menu">
-  <a href="results.html" class="menu-btn">🎓 Results</a>
+  <a href="#" class="menu-btn">🎓 Results</a>
   <a href="admissions.html" class="menu-btn">📝 Admissions</a>
   <a href="downloads.html" class="menu-btn">📂 Downloads</a>
   <a href="mdm.html" class="menu-btn">🍲 Mid Day Meal</a>
@@ -66,42 +64,16 @@
   <a href="staff.html" class="menu-btn">👩‍🏫 Staff</a>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
   © Government Primary School Pethgam Wagoora
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
 <script src="app.js"></script>
 
+<!-- SERVICE WORKER -->
 <script>
-/* ================= RESULT SEARCH LOGIC ================= */
-document.getElementById("check-result-btn").addEventListener("click", function () {
-  const roll = document.getElementById("roll-no-input").value.trim();
-  const container = document.getElementById("report-card-container");
-
-  if (!roll) {
-    alert("Please enter Roll Number");
-    return;
-  }
-
-  container.style.display = "block";
-  container.innerHTML = "<p style='text-align:center;'>🔍 Searching result for Roll No " + roll + "...</p>";
-
-  // Actual result rendering handled in app.js
-});
-
-/* ================= SERVICE WORKER ================= */
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
-      .then(function (registration) {
-        console.log('ServiceWorker registered:', registration.scope);
-      })
-      .catch(function (err) {
-        console.log('ServiceWorker registration failed:', err);
-      });
-  });
+  navigator.serviceWorker.register('sw.js');
 }
 </script>
 
