@@ -1,3 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Online Result – GPS Pethgam Wagoora</title>
+
+<style>
+body{
+  margin:0;
+  background:#ddd;
+  font-family:Arial,sans-serif;
+}
+
+/* ===== A4 PAGE ===== */
+.page{
+  width:210mm;
+  height:297mm;
+  background:#fff;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border:2px solid #004d40;
+}
+
+/* ===== WATERMARK (ROTATED SAFE) ===== */
+.watermark{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:rotate(90deg) translate(-50%,-50%);
+  transform-origin:center;
+  opacity:0.08;
+  z-index:1;
+  pointer-events:none;
+}
+.watermark img{
+  width:120mm;
+}
+
+/* ===== ROTATED CONTENT ===== */
+.rotated-sheet{
+  width:297mm;
+  height:210mm;
+  position:absolute;
+  top:0;
+  left:0;
+  transform:rotate(90deg) translateY(-210mm);
+  transform-origin:top left;
+  padding:6mm;
+  padding-bottom:38mm; /* SPACE FOR FOOTER */
+  box-sizing:border-box;
+  z-index:2;
+}
+
+/* ===== HEADER ===== */
+.header{
+  display:grid;
+  grid-template-columns:35mm 1fr 35mm;
+  align-items:center;
+  border-bottom:2px solid #004d40;
+  padding-bottom:6mm;
+}
+
+.logo, .photo{
+  width:30mm;
+  height:30mm;
+  border:1px solid #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+}
+
+.logo img{
+  max-width:100%;
+  max-height:100%;
+}
+
+.title{
+  text-align:center;
+}
+.title h2{
+  margin:0;
+  font-size:52px;
+  font-weight:700;
+}
+.title div{
+  font-size:28px;
+}
+
+/* ===== STUDENT INFO ===== */
+.info{
+  margin-top:5mm;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3mm;
+  font-size:12.5px;
+}
+
+/* ===== TABLE ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:5mm;
+  font-size:13px;
+  table-layout:fixed;
+}
+th,td{
+  border:1px solid #333;
+  padding:6px 3px;
+  text-align:center;
+}
+th{
+  background:#c8e6c9;
+}
+.grand{
+  background:#81c784;
+  font-weight:bold;
+}
+
+/* ===== REMARKS & PERFORMANCE ===== */
+.remarks-perf{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:8mm;
+  margin-top:6mm;
+}
+
+.remarks{
+  border:1px solid #333;
+  padding:3mm;
+  font-size:11px;
+  height:36mm;
+  max-height:36mm;
+  overflow:hidden;
+}
+
+/* ===== BAR GRAPH (PDF SAFE) ===== */
+.performance h4{
+  margin:0 0 3mm 0;
+  font-size:12px;
+}
+
+.bar{
+  height:5mm;
+  margin-bottom:3mm;
+  border-radius:2mm;
+  padding-left:2mm;
+  color:#fff;
+  font-size:10px;
+  font-weight:bold;
+  line-height:5mm;
+}
+
+.bar.english{background:#1e88e5;width:57%;}
+.bar.math{background:#fb8c00;width:43%;}
+.bar.evs{background:#43a047;width:57%;}
+.bar.urdu{background:#8e24aa;width:67%;}
+.bar.kashmiri{background:#00897b;width:68%;}
+
+/* ===== FOOTER ===== */
+.footer{
+  position:absolute;
+  bottom:6mm;
+  left:6mm;
+  right:45mm;
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+}
+
+.signature{
+  width:30%;
+  text-align:center;
+  border-top:1px solid #000;
+  padding-top:2mm;
+}
+
+/* ===== QR CODE ===== */
+.qr{
+  position:absolute;
+  bottom:6mm;
+  right:6mm;
+  width:30mm;
+  height:30mm;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="downloadPDF()" style="margin:10px;">Download PDF</button>
+
+<div class="page">
+
+  <!-- WATERMARK -->
+  <div class="watermark">
+    <img src="assets/logo.png" alt="Watermark">
+  </div>
+
+  <div class="rotated-sheet">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo">
+        <img src="assets/logo.png" alt="School Logo">
+      </div>
+      <div class="title">
+        <h2>GOVERNMENT PRIMARY SCHOOL</h2>
+        <div>PETHGAM WAGOORA – 193109</div>
+        <div>Academic Session: Nov 2025</div>
+      </div>
+      <div class="photo">PHOTO</div>
+    </div>
+
+    <!-- INFO -->
+    <div class="info">
+      <div><b>Name:</b> MAHIRA SALAM</div>
+      <div><b>Roll No:</b> 406</div>
+      <div><b>Class:</b> 4th</div>
+      <div><b>Father:</b> ABDUL SALAM BHAT</div>
+      <div><b>Adm No:</b> 124</div>
+      <div><b>DOB:</b> 15-05-2017</div>
+      <div><b>Mother:</b> GULSHANA BEGUM</div>
+      <div><b>PEN:</b> 22125154160</div>
+      <div><b>Apaar ID:</b> N/A</div>
+    </div>
+
+    <!-- TABLE -->
+    <table>
+      <tr>
+        <th rowspan="2">Subject</th>
+        <th colspan="6">Formative Assessment</th>
+        <th rowspan="2">FA</th>
+        <th rowspan="2">CCA</th>
+        <th rowspan="2">SA</th>
+        <th rowspan="2">Total</th>
+        <th rowspan="2">Grade</th>
+        <th rowspan="2">Level</th>
+      </tr>
+      <tr>
+        <th>FA1</th><th>FA2</th><th>FA3</th><th>FA4</th><th>FA5</th><th>FA6</th>
+      </tr>
+      <tr><td>English</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td><td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td></tr>
+      <tr><td>Math</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>13</td><td>9</td><td>21</td><td>43</td><td>C</td><td>Stream</td></tr>
+      <tr><td>EVS</td><td>2</td><td>2</td><td>3</td><td>3</td><td>3</td><td>4</td><td>17</td><td>12</td><td>28</td><td>57</td><td>B</td><td>Mountain</td></tr>
+      <tr><td>Urdu</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>20</td><td>14</td><td>33</td><td>67</td><td>B</td><td>Mountain</td></tr>
+      <tr><td>Kashmiri</td><td>3</td><td>3</td><td>3</td><td>4</td><td>4</td><td>4</td><td>21</td><td>14</td><td>33</td><td>68</td><td>B</td><td>Mountain</td></tr>
+      <tr class="grand"><td>Grand Total</td><td colspan="6">—</td><td>88</td><td>61</td><td>143</td><td>292</td><td>B</td><td>Mountain</td></tr>
+    </table>
+
+    <!-- REMARKS + GRAPH -->
+    <div class="remarks-perf">
+      <div class="remarks">
+        <b>Remarks:</b><br>
+        Student has performed well overall. Needs more practice in Mathematics.
+      </div>
+      <div class="performance">
+        <h4>Subject-wise Performance (%)</h4>
+        <div class="bar english">English 57%</div>
+        <div class="bar math">Math 43%</div>
+        <div class="bar evs">EVS 57%</div>
+        <div class="bar urdu">Urdu 67%</div>
+        <div class="bar kashmiri">Kashmiri 68%</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="signature">Class Teacher</div>
+      <div class="signature">Exam I/C</div>
+      <div class="signature">Headmaster</div>
+    </div>
+
+    <!-- QR -->
+    <div class="qr" id="qrcode"></div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+new QRCode(document.getElementById("qrcode"), {
+  text: "Name: Mahira Salam | Class: 4th | Roll: 406 | Total: 292 | School: GPS Pethgam Wagoora",
+  width:120,
+  height:120
+});
+
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p","mm","a4");
+  html2canvas(document.querySelector(".page"),{scale:2,useCORS:true})
+  .then(canvas=>{
+    pdf.addImage(canvas.toDataURL("image/png"),"PNG",0,0,210,297);
+    pdf.save("Marks_Sheet_GPS_Pethgam.pdf");
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
