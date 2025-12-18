@@ -1,0 +1,30 @@
+<script>
+if(sessionStorage.getItem("role")!=="teacher"){
+  alert("Unauthorized");
+  location.href="../login/login.html";
+}
+</script>
+
+<h2>Pending Approvals</h2>
+<div id="list"></div>
+
+<script>
+fetch("../data/pending.json")
+.then(r=>r.json())
+.then(data=>{
+  let html="";
+  data.forEach((u,i)=>{
+    html+=`
+    <div style="border:1px solid #ccc;padding:10px;margin:5px;">
+      <b>${u.name}</b> (${u.role})<br>
+      ID: ${u.id}<br>
+      <button onclick="approve(${i})">Approve</button>
+    </div>`;
+  });
+  document.getElementById("list").innerHTML=html;
+});
+
+function approve(i){
+  alert("Approved (Add to users.json)");
+}
+</script>
