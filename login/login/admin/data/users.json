@@ -1,0 +1,14 @@
+{
+  "teachers":[
+    {
+      "username":"teacher1",
+      "password":"gps@2025"
+    }
+  ],
+  "students":[
+    {
+      "rollNo":"406",
+      "dob":"2017-05-15"
+    }
+  ]
+}
