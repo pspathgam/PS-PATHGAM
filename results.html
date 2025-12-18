@@ -22,7 +22,7 @@ body{
   border:2px solid #004d40;
 }
 
-/* ===== WATERMARK (VISIBLE & SAFE) ===== */
+/* ===== WATERMARK ===== */
 .watermark{
   position:absolute;
   top:50%;
@@ -31,11 +31,8 @@ body{
   transform-origin:center;
   opacity:0.12;
   z-index:0;
-  pointer-events:none;
 }
-.watermark img{
-  width:140mm;
-}
+.watermark img{width:140mm;}
 
 /* ===== ROTATED CONTENT ===== */
 .rotated-sheet{
@@ -46,7 +43,7 @@ body{
   left:0;
   transform:rotate(90deg) translateY(-210mm);
   transform-origin:top left;
-  padding:6mm 6mm 42mm 6mm; /* extra bottom space */
+  padding:6mm 6mm 44mm 6mm;
   box-sizing:border-box;
   z-index:2;
 }
@@ -70,24 +67,13 @@ body{
   font-size:10px;
 }
 
-.logo img{
-  max-width:100%;
-  max-height:100%;
-}
+.logo img{max-width:100%;max-height:100%;}
 
-.title{
-  text-align:center;
-}
-.title h2{
-  margin:0;
-  font-size:52px;
-  font-weight:700;
-}
-.title div{
-  font-size:28px;
-}
+.title{text-align:center;}
+.title h2{margin:0;font-size:52px;}
+.title div{font-size:28px;}
 
-/* ===== STUDENT INFO ===== */
+/* ===== INFO ===== */
 .info{
   margin-top:5mm;
   display:grid;
@@ -96,13 +82,12 @@ body{
   font-size:12.5px;
 }
 
-/* ===== TABLE (UNCHANGED & SAFE) ===== */
+/* ===== TABLE ===== */
 table{
   width:100%;
   border-collapse:collapse;
   margin-top:5mm;
   font-size:13px;
-  table-layout:fixed;
 }
 th,td{
   border:1px solid #333;
@@ -112,58 +97,53 @@ th,td{
 th{background:#c8e6c9;}
 .grand{background:#81c784;font-weight:bold;}
 
-/* ===== REMARKS & PERFORMANCE ===== */
+/* ===== REMARKS + GRAPH ===== */
 .remarks-perf{
   display:grid;
   grid-template-columns:1fr 1.1fr;
   gap:6mm;
   margin-top:6mm;
-  align-items:start;
 }
 
-/* FIXED HEIGHT */
+/* 🔧 REMARKS HEIGHT REDUCED BY 25% */
 .remarks{
   border:1px solid #333;
   padding:3mm;
   font-size:11px;
-  height:28mm;
+  height:21mm;
   overflow:hidden;
 }
 
-/* ===== BAR GRAPH FIX ===== */
+/* ===== BAR GRAPH ===== */
 .performance h4{
   margin:0 0 2mm 0;
   font-size:12px;
 }
-
 .bar{
   height:4.5mm;
-  margin-bottom:2mm; /* reduced spacing */
+  margin-bottom:2mm;
   border-radius:2mm;
   padding-left:2mm;
   color:#fff;
   font-size:9.5px;
-  font-weight:bold;
   line-height:4.5mm;
-  max-width:100%;
 }
-
 .bar.english{background:#1e88e5;width:57%;}
 .bar.math{background:#fb8c00;width:43%;}
 .bar.evs{background:#43a047;width:57%;}
 .bar.urdu{background:#8e24aa;width:67%;}
 .bar.kashmiri{background:#00897b;width:68%;}
 
-/* ===== FOOTER (RIGHT BOTTOM) ===== */
+/* ===== SIGNATURES (RIGHT BOTTOM – VERTICAL) ===== */
 .footer{
   position:absolute;
   bottom:6mm;
-  right:40mm;
+  right:42mm;
   display:flex;
-  gap:10mm;
+  flex-direction:column;
+  gap:6mm;
   font-size:10px;
 }
-
 .signature{
   width:35mm;
   text-align:center;
@@ -171,30 +151,27 @@ th{background:#c8e6c9;}
   padding-top:2mm;
 }
 
-/* ===== QR (NO OVERLAP) ===== */
+/* ===== QR (SQUARE, NO OVERLAP) ===== */
 .qr{
   position:absolute;
   bottom:6mm;
   right:6mm;
-  width:30mm;
-  height:30mm;
+  width:28mm;
+  height:28mm;
 }
 </style>
 </head>
 
 <body>
-<button onclick="downloadPDF()" style="margin:10px;">Download PDF</button>
 
 <div class="page">
 
-<!-- WATERMARK -->
 <div class="watermark">
   <img src="assets/logo.png">
 </div>
 
 <div class="rotated-sheet">
 
-<!-- HEADER -->
 <div class="header">
   <div class="logo"><img src="assets/logo.png"></div>
   <div class="title">
@@ -205,7 +182,6 @@ th{background:#c8e6c9;}
   <div class="photo">PHOTO</div>
 </div>
 
-<!-- INFO -->
 <div class="info">
   <div><b>Name:</b> MAHIRA SALAM</div>
   <div><b>Roll No:</b> 406</div>
@@ -218,7 +194,6 @@ th{background:#c8e6c9;}
   <div><b>Apaar ID:</b> N/A</div>
 </div>
 
-<!-- TABLE (SAFE) -->
 <table>
 <tr>
 <th rowspan="2">Subject</th>
@@ -241,13 +216,11 @@ th{background:#c8e6c9;}
 <tr class="grand"><td>Grand Total</td><td colspan="6">—</td><td>88</td><td>61</td><td>143</td><td>292</td><td>B</td><td>Mountain</td></tr>
 </table>
 
-<!-- REMARKS + GRAPH -->
 <div class="remarks-perf">
   <div class="remarks">
     <b>Remarks:</b><br>
     Student has performed well overall. Needs more practice in Mathematics.
   </div>
-
   <div class="performance">
     <h4>Subject-wise Performance (%)</h4>
     <div class="bar english">English 57%</div>
@@ -258,14 +231,12 @@ th{background:#c8e6c9;}
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   <div class="signature">Class Teacher</div>
   <div class="signature">Exam I/C</div>
   <div class="signature">Headmaster</div>
 </div>
 
-<!-- QR -->
 <div class="qr" id="qrcode"></div>
 
 </div>
@@ -275,14 +246,13 @@ th{background:#c8e6c9;}
 <script>
 new QRCode(document.getElementById("qrcode"),{
   text:"Mahira Salam | Class 4 | Total 292 | GPS Pethgam",
-  width:120,
-  height:120
+  width:112,
+  height:112
 });
 </script>
 
 </body>
 </html>
-
 
   
 
