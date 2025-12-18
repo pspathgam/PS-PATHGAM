@@ -9,34 +9,54 @@
   <meta name="theme-color" content="#0b5e3c">
 
   <link rel="stylesheet" href="style.css">
-  
-  </head>
+</head>
+
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="app-header">
   <h1>Government Primary School<br>Pethgam Wagoora</h1>
   <p>Established 2005</p>
-  <p class="motto">من الظلمات إلى النور<br>Learn • Lead • Correct</p>
+  <p class="motto">
+    من الظلمات إلى النور<br>
+    Learn • Lead • Correct
+  </p>
 </header>
 
+<!-- ================= LOGIN BAR ================= -->
+<section style="text-align:center; padding:10px; background:#e8f5e9;">
+  <a href="login/login.html">🔐 Login</a> |
+  <a href="login/signup.html">📝 Student / Teacher Sign-Up</a> |
+  <a href="admin/dashboard.html">🛡 Admin</a>
+</section>
+
+<!-- ================= TICKER ================= -->
 <section class="ticker">
   <marquee>
     Admissions Open 2025–26 | Results Available | Winter Assignments Uploaded
   </marquee>
 </section>
 
+<!-- ================= RESULT SEARCH ================= -->
 <section class="result-check-form">
   <h2>Check Your Result</h2>
+
   <div class="input-group">
     <label for="roll-no-input">Enter Roll Number:</label>
     <input type="text" id="roll-no-input" placeholder="e.g., 406">
     <button id="check-result-btn">View Result & Download PDF</button>
   </div>
+
+  <p style="font-size:12px;color:#555;">
+    📌 Result will appear only after valid Roll No search
+  </p>
 </section>
 
-<div id="report-card-container" style="display:none;">
-    </div>
+<!-- ================= RESULT CONTAINER ================= -->
+<!-- IMPORTANT: stays EMPTY until search -->
+<div id="report-card-container" style="display:none;"></div>
 
+<!-- ================= MAIN MENU ================= -->
 <section class="menu">
   <a href="results.html" class="menu-btn">🎓 Results</a>
   <a href="admissions.html" class="menu-btn">📝 Admissions</a>
@@ -46,27 +66,44 @@
   <a href="staff.html" class="menu-btn">👩‍🏫 Staff</a>
 </section>
 
+<!-- ================= FOOTER ================= -->
 <footer>
-  © PS Pethgam Wagoora
+  © Government Primary School Pethgam Wagoora
 </footer>
 
+<!-- ================= SCRIPTS ================= -->
 <script src="app.js"></script>
 
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      // The path to your Service Worker file (sw.js)
-      navigator.serviceWorker.register('/sw.js', {scope: '/'}).then(function(registration) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch(function(err) {
-        // registration failed
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
+/* ================= RESULT SEARCH LOGIC ================= */
+document.getElementById("check-result-btn").addEventListener("click", function () {
+  const roll = document.getElementById("roll-no-input").value.trim();
+  const container = document.getElementById("report-card-container");
+
+  if (!roll) {
+    alert("Please enter Roll Number");
+    return;
   }
+
+  container.style.display = "block";
+  container.innerHTML = "<p style='text-align:center;'>🔍 Searching result for Roll No " + roll + "...</p>";
+
+  // Actual result rendering handled in app.js
+});
+
+/* ================= SERVICE WORKER ================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then(function (registration) {
+        console.log('ServiceWorker registered:', registration.scope);
+      })
+      .catch(function (err) {
+        console.log('ServiceWorker registration failed:', err);
+      });
+  });
+}
 </script>
 
 </body>
 </html>
-
