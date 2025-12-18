@@ -1,37 +1,35 @@
-// This file handles all user interactions and data processing.
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const checkBtn = document.getElementById('check-result-btn');
-    const rollInput = document.getElementById('roll-no-input');
-    
-    if (checkBtn) {
-        checkBtn.addEventListener('click', function() {
-            const rollNo = rollInput.value;
-            
-            if (rollNo) {
-                // 1. FETCH DATA (This is where your old AJAX/Fetch code was!)
-                fetch('/api/results?roll=' + rollNo)
-                    .then(response => response.json())
-                    .then(data => {
-                        // 2. FILL TEMPLATE (This function must take the new HTML/CSS template)
-                        const reportHTML = generateReportCardHTML(data); 
-                        document.getElementById('report-card-container').innerHTML = reportHTML;
-                        document.getElementById('report-card-container').style.display = 'block';
+  const btn = document.getElementById("check-result-btn");
+  const rollInput = document.getElementById("roll-no-input");
+  const container = document.getElementById("report-card-container");
 
-                        // 3. GENERATE PDF (This is where your jsPDF/html2canvas function was!)
-                        generatePDF(document.getElementById('report-card-container'));
-                    })
-                    .catch(error => {
-                        alert("Failed to fetch results. Check API connection.");
-                        console.error('Fetch error:', error);
-                    });
-            } else {
-                alert('Please enter a Roll Number.');
-            }
-        });
+  btn.addEventListener("click", function () {
+
+    const roll = rollInput.value.trim();
+
+    container.style.display = "block";
+
+    if (roll === "") {
+      container.innerHTML =
+        "<p style='color:red;text-align:center;'>❌ Please enter Roll Number</p>";
+      return;
     }
+
+    // DEMO DATABASE (TEMP)
+    if (roll === "406") {
+
+      container.innerHTML = `
+        <iframe 
+          src="marksheet.html" 
+          style="width:100%;height:1100px;border:none;">
+        </iframe>
+      `;
+
+    } else {
+      container.innerHTML =
+        "<p style='color:red;text-align:center;'>❌ Result not found</p>";
+    }
+  });
+
 });
-
-// NOTE: You must include the actual implementation of generateReportCardHTML 
-// and generatePDF, which were in your original working code.
-
